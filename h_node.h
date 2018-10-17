@@ -1,4 +1,13 @@
-struct linked_list{
-      struct h_leaf head;
-      struct h_leaf *next;
+#ifndef HUFFMAN_NODE
+#define HUFFMAN_NODE
+
+struct h_node{
+   int occurence;
+   char character;
+   struct h_node *left;
+   struct h_node *right;
 };
+
+struct h_node empty_node();
+
+#endif
