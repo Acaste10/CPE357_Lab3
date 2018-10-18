@@ -67,7 +67,17 @@ int l_list_len(struct linked_list *list) {
    }
 }
 
-int main(){
+struct linked_list *l_list_remove(struct linked_list *list) {
+   if (list == NULL) {
+      perror("NULL linked list given for remove");
+      exit(1);
+   } else {
+      struct linked_list *temp = list->next;
+      return temp;
+   }
+}
+
+/*int main(){
    struct linked_list *newList = NULL;
    //struct linked_list *newList = NULL;
    //l_list_len(newList);
@@ -75,9 +85,14 @@ int main(){
    //newList = l_list_insert_sorted(newList, newNode);
    struct h_node otherNode1 = make_node(3, 'c', NULL, NULL);
    newList = l_list_insert_sorted(newList, otherNode1);
-   struct h_node otherNode2 = make_node(1, 'c', NULL, NULL);
+   struct h_node otherNode2 = make_node(1, 'b', NULL, NULL);
    newList = l_list_insert_sorted(newList, otherNode2);
    struct h_node otherNode3 = make_node(3, 'a', NULL, NULL);
    newList = l_list_insert_sorted(newList, otherNode3);
+   newList = l_list_remove(newList);
+   newList = l_list_remove(newList);
+   newList = l_list_remove(newList);
+   free(otherNode1);
+
    return 0;
-}
+}*/
