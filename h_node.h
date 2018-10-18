@@ -9,5 +9,7 @@ struct h_node{
 };
 
 struct h_node empty_node();
+struct h_node make_node(int occurence, char character, struct h_node *left, 
+      struct h_node *right);
 
 #endif

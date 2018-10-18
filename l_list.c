@@ -14,11 +14,21 @@ struct linked_list *empty_l_list(){
    if ((newList = malloc (sizeof(*newList))) == NULL) {
       perror("Empty Linked List failed to allocate memory");
       exit(1);
-   } else {
+   } 
+   /*else {
       newList->head = empty_node();
       newList->next = NULL;
-   }
+   }*/
    return newList;
+}
+
+struct linked_list *make_l_list(struct linked_list *list, struct h_node node) {
+   struct linked_list *newHead = NULL;
+   newHead = empty_l_list();
+
+   newHead->head = node;
+   newHead->next = list;
+   return newHead;
 }
 
 int comes_before(struct h_node node, struct linked_list *list) {
@@ -29,22 +39,20 @@ int comes_before(struct h_node node, struct linked_list *list) {
 }
 
 struct linked_list *l_list_insert_sorted(struct linked_list *list, struct h_node node) {
-   if (list == NULL) {
+   /*if (list == NULL) {
+      perror("NULL 'list' given for insert sorted");
+      exit(1);
+   }*/
+   if (list == NULL){
       struct linked_list *newHead = NULL;
       newHead = empty_l_list();
 
       newHead->head = node;
       newHead->next = NULL;
       return newHead;
-
    }
    if (comes_before(node, list)) {
-      struct linked_list *newHead = NULL;
-      newHead = empty_l_list();
-
-      newHead->head = node;
-      newHead->next = list;
-      return newHead;
+      return make_l_list(list, node);
    } else {
       list->next = l_list_insert_sorted(list->next, node);
    }
@@ -60,6 +68,16 @@ int l_list_len(struct linked_list *list) {
 }
 
 int main(){
-   struct linked_list *newList = empty_l_list();
+   struct linked_list *newList = NULL;
+   //struct linked_list *newList = NULL;
+   //l_list_len(newList);
+   //struct h_node newNode = empty_node();
+   //newList = l_list_insert_sorted(newList, newNode);
+   struct h_node otherNode1 = make_node(3, 'c', NULL, NULL);
+   newList = l_list_insert_sorted(newList, otherNode1);
+   struct h_node otherNode2 = make_node(1, 'c', NULL, NULL);
+   newList = l_list_insert_sorted(newList, otherNode2);
+   struct h_node otherNode3 = make_node(3, 'a', NULL, NULL);
+   newList = l_list_insert_sorted(newList, otherNode3);
    return 0;
 }
